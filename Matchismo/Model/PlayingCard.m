@@ -11,6 +11,22 @@
 @implementation PlayingCard
 @synthesize suit = _suit;
 
+-(int)match:(NSArray *)otherCards
+{
+    int score=0;
+    if (otherCards.count == 1){
+    
+        PlayingCard *card = [otherCards lastObject];
+        
+        if ([card.suit isEqualToString:self.suit]){//suit match
+            score=1;
+        } else if (card.rank == self.rank){
+            score = 4;
+        }
+    
+    }//end oi count 1
+    return score;
+}
 - (NSString *)suit
 {
     return _suit;
