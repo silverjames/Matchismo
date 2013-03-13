@@ -14,17 +14,43 @@
 -(int)match:(NSArray *)otherCards
 {
     int score=0;
-    if (otherCards.count == 1){
     
-        PlayingCard *card = [otherCards lastObject];
-        
-        if ([card.suit isEqualToString:self.suit]){//suit match
+    //the vectors hold the matching suits and ranks
+    NSMutableArray *suitVector;
+    NSMutableArray *rankVector;
+     
+    if (otherCards) {
+        for (int i = 0; i<otherCards.count; i++) {
+            PlayingCard *card = [otherCards objectAtIndex:i];
+            if ([card.suit isEqualToString:self.suit]) {
+                [suitVector insertObject:card.suit atIndex:i];
+            }//end if suit match
+            if (card.rank == self.rank) {
+                [rankVector insertObject:(NSString *)@"x" atIndex:i];
+            }//end if rank match
+        }
+    }
+    
+    //now lets evaluate the vectors
+    if (otherCards.count == 1){//match for a two-card game
+    
+        if ([suitVector count] == 1){//suit match
             score=1;
-        } else if (card.rank == self.rank){
+        } else if ([rankVector count] == 1 ){
             score = 4;
         }
     
-    }//end oi count 1
+    } else if (otherCards.count == 2){//match for a three-card game
+
+        if ([suitVector count] == 2){//rank match
+            score = 4;
+        } else if ([rankVector count] == 2 ){
+            score = 12;
+        }
+       
+        
+    }//end else if
+        
     return score;
 }
 - (NSString *)suit

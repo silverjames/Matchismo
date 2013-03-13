@@ -12,7 +12,9 @@
 
 @interface CardMatchingGame()
 @property (readwrite, nonatomic) int score;
+@property (readwrite, nonatomic) NSString *status;
 @property (strong, nonatomic) NSMutableArray *cards;
+@property (nonatomic, readwrite) BOOL threeMatchGame;
 @end
 
 @implementation CardMatchingGame
@@ -25,7 +27,7 @@
 }
 
 //initializer
--(id)initWithCardCount:(NSUInteger)count usingDeck:(Deck *)deck
+-(id)initWithCardCount:(NSUInteger)count usingDeck:(Deck *)deck usingGameType:(NSUInteger)gameType
 {
     self = [super init];
     
@@ -37,9 +39,18 @@
             } else {
                 card.faceUp = NO;
                 self.cards[i] = card;
-                NSLog(@"GameModel:init:random card: %d - %@", i, card.contents  );
+                //NSLog(@"GameModel:init:random card: %d - %@", i, card.contents  );
             }
         }//end for
+        self.status = @" ";
+        //now set the game type (2 or 3 matches, default is 2)
+        if (gameType == 1) {
+            self.threeMatchGame = YES;
+            NSLog(@"game model:init: three card match");
+        } else {
+            self.threeMatchGame = NO;
+            NSLog(@"game model:init: two card match");
+        }
     }//end if
     return self;
 }
@@ -50,41 +61,61 @@
 
 -(void)flipCardAtIndex:(NSUInteger)index
 {
+    NSMutableArray *faceUpCards;
     Card *card = [self cardAtIndex:index];
     NSLog(@"gameModel:flipCardAtIndex:card: %@", card.contents);
-    if (!card.isUnplayable) {//if the card is playable
-        NSLog(@"gameModel:flipCardAtIndex: card is playable");
-        if (!card.isFaceUp) {//and faceup, we can match
-            NSLog(@"gameModel:flipCardAtIndex: card is face up");
 
+    if (!card.isUnplayable) {//if the card is playable
+        //NSLog(@"gameModel:flipCardAtIndex: card is playable");
+        if (!card.isFaceUp) {//and was not faceup, we can turn and match
+            //NSLog(@"gameModel:flipCardAtIndex: card was not face up");
+            
+            //find all other face-up cards
             for (Card *otherCard in self.cards){
                 if (otherCard.isFaceUp && !otherCard.isUnplayable) {
-                    NSLog(@"gameModel:flipCardAtIndex: another card found");
-
-                    int matchscore = [card match:@[otherCard]];
-                    if (matchscore) {
-                        otherCard.unplayable = YES;
-                        card.unplayable = YES;
-                        self.score += matchscore * MATCH_BONUS;
-                        NSLog(@"gameModel:flipCardAtIndex: match!");
-                    } else {
-                        otherCard.faceUp = NO;
-                        self.score -= MISMATCH_PENALTY;
-                        NSLog(@"gameModel:flipCardAtIndex: no match!");
-                    }//if matchscore
-                    break;
-                }//there could be a match
+                    [faceUpCards addObject:otherCard];
+                }//end if
             }//end for
-            self.score -= FLIP_COST;
-        }//end if card faceup
-        card.faceUp = !card.faceUp;
-        //[self.cards replaceObjectAtIndex:index withObject:card];
-        if (card.faceUp) {
-            NSLog(@"gameModel:flipCardAtIndex:turned card face up");
-        }
-    }
-}
 
+            //do the matching if we found any other face-up card
+            if ([faceUpCards count] > 0) {
+                NSMutableString *matchLabels;
+                int matchscore = [card match:faceUpCards];
+                if (matchscore) {
+                    for (Card *matchCard in faceUpCards) {
+                        matchCard.unplayable = YES;
+                        //format matching cards for status message
+                        if (matchLabels == Nil) {
+                            [matchLabels appendString:matchCard.contents];
+                        } else {
+                            [matchLabels appendFormat:@" and %@", matchCard.contents];
+                        }
+                    }//end for
+                    card.unplayable = YES;
+                    self.score += matchscore * MATCH_BONUS;
+                    self.status = [NSString stringWithFormat:@"matched %@ with %@ for %d points!",
+                                            card.contents, matchLabels, matchscore * MATCH_BONUS];
+                             
+                    } else {//no match!
+                        for (Card *matchCard in faceUpCards) {
+                            matchCard.faceUp = NO;
+                        }
+                        self.score -= MISMATCH_PENALTY;
+                        self.status = [NSString stringWithFormat:@"Oops! Mismatch penalty: %d points!",MISMATCH_PENALTY];
+                    }//if matchscore
+                             
+            }//end faceUpCard count
+            self.status = [NSString stringWithFormat:@"flipped %@ up",card.contents];
+        
+        }//end if card was not faceup and could be trurned
+        card.faceUp = !card.faceUp;
+        self.score -= FLIP_COST;
+
+    }//end if card is playable
+
+}//end method
+
+            
 -(Card *) cardAtIndex:(NSUInteger)index
 {
     
