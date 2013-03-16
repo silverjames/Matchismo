@@ -26,17 +26,26 @@
 
 //actions
 - (IBAction)gameType:(id)sender {
-    int i = [self.gameSelector selectedSegmentIndex];
+    self.game = Nil;
+    self.flipCount = 0;
+    NSLog(@"selector segment index: %d", [self.gameSelector selectedSegmentIndex]);
+    [self updateUI];
+
 }
 - (IBAction)deal:(id)sender {
     self.game = Nil;
     self.flipCount = 0;
+    [self.gameSelector setEnabled:YES forSegmentAtIndex:0];
+    [self.gameSelector setEnabled:YES forSegmentAtIndex:1];
+    
     [self updateUI];
 }
 
 //playing card button action!
 - (IBAction)flipCard:(UIButton *)sender
 {
+    [self.gameSelector setEnabled:NO forSegmentAtIndex:0];
+    [self.gameSelector setEnabled:NO forSegmentAtIndex:1];
     [self.game flipCardAtIndex:[self.cardButtons indexOfObject:sender]];
     self.flipCount++;
     [self updateUI];
@@ -45,13 +54,14 @@
 //game play initialize
 - (CardMatchingGame *) game
 {
-    if (!_game) _game = [[CardMatchingGame alloc] initWithCardCount:self.cardButtons.count usingDeck:[[PlayingCardDeck alloc]init]] usingGameType:[self.gameSelector selectedSegmentIndex]];
+    if (!_game) _game = [[CardMatchingGame alloc] initWithCardCount:self.cardButtons.count usingDeck:[[PlayingCardDeck alloc]init] usingType:[self.gameSelector selectedSegmentIndex]];    
     return _game;
 }
 
 - (void)setCardButtons:(NSArray *)cardButtons
 {
     _cardButtons = cardButtons;
+    	
     [self updateUI];
 }
 
@@ -61,11 +71,18 @@
     //set all the buttons
     for (UIButton *cardButton in self.cardButtons){
         Card *card = [self.game cardAtIndex:[self.cardButtons indexOfObject:cardButton]];
+        cardButton.alpha = card.isUnplayable ? 0.3: 1.0;
         [cardButton setTitle:card.contents forState:UIControlStateSelected];
         [cardButton setTitle:card.contents forState:UIControlStateSelected|UIControlStateDisabled];
+        [cardButton setBackgroundImage:[UIImage imageNamed:@"card_front"] forState:UIControlStateSelected];
+        [cardButton setImageEdgeInsets:UIEdgeInsetsMake(2.2, 2.2, 2.2, 2.2)];
+        if (!cardButton.selected) {
+            [cardButton setBackgroundImage:[UIImage imageNamed:@"card_back"] forState:UIControlStateNormal];
+            [cardButton setImageEdgeInsets:UIEdgeInsetsMake(2.2, 2.2, 2.2, 2.2)];
+        }//card is not seleced
+        
         cardButton.selected = card.isFaceUp;
         cardButton.enabled = !card.isUnplayable;
-        cardButton.alpha = card.isUnplayable ? 0.3: 1.0;
         //NSLog(@"Controller:updateUI: button set with %@", card.contents  );
     }//end for through cardButtons
     
@@ -73,6 +90,7 @@
     self.scoreLabel.text = [NSString stringWithFormat:@"Score: %d", self.game.score];
     self.flipsLabel.text = [NSString stringWithFormat:@"Flips: %d", self.flipCount];
     self.statusLabel.text = [NSString stringWithFormat:@"%@", self.game.status];
+
 }
 
 @end

@@ -12,10 +12,10 @@
 @interface CardMatchingGame : NSObject
 @property(nonatomic, readonly) int score;
 @property(nonatomic,readonly) NSString *status;
-@property(nonatomic, readonly, getter = isThreeCardGame) BOOL threeCardGame;
+@property (nonatomic, readwrite) int matchType; //0 = 2-card match, 1 = 3-card match
 
 //designated initializer
--(id)initWithCardCount:(NSUInteger)cardCount usingDeck:(Deck *)deck usingGameType:(NSUInteger)gameType;
+-(id)initWithCardCount:(NSUInteger)cardCount usingDeck:(Deck *)deck usingType:(NSUInteger) idx;
 
 -(void)flipCardAtIndex:(NSUInteger)index;
 
