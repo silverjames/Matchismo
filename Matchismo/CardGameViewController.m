@@ -11,6 +11,7 @@
 #import "PlayingCard.h"
 #import "Card.h"
 #import "CardMatchingGame.h"
+#import "ScoreKeeper.h"
 
 @interface CardGameViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *flipsLabel;
@@ -18,13 +19,26 @@
 @property (weak, nonatomic) IBOutlet UILabel *statusLabel;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *gameSelector;
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *cardButtons;
+@property (strong, nonatomic) ScoreKeeper *keeper;
 @property (nonatomic) int flipCount;
 @property (strong, nonatomic) CardMatchingGame *game;
 @end
 
 @implementation CardGameViewController
+//////////////////
+//
+//lifecycle methods
+//
+//////////////////
 
-//actions
+- (void)viewDidLoad{
+}
+//////////////////
+//
+//action methods
+//
+//////////////////
+
 - (IBAction)gameType:(id)sender {
     self.game = Nil;
     self.flipCount = 0;
@@ -36,6 +50,7 @@
     self.game = Nil;
     self.flipCount = 0;
     [self.gameSelector setEnabled:YES forSegmentAtIndex:0];
+    [self.gameSelector setSelectedSegmentIndex:0];
     [self.gameSelector setEnabled:YES forSegmentAtIndex:1];
     
     [self updateUI];
@@ -48,26 +63,36 @@
     [self.gameSelector setEnabled:NO forSegmentAtIndex:1];
     [self.game flipCardAtIndex:[self.cardButtons indexOfObject:sender]];
     self.flipCount++;
+    [self.keeper writeResults:self.game.trackScore];
     [self updateUI];
 }
 
+
+//////////////////
+//
+//initializers and other methods
+//
+//////////////////
+
 //game play initialize
-- (CardMatchingGame *) game
-{
+- (CardMatchingGame *) game{
+//    NSLog(@"CGVC:game: selectedSegmentIndex: %d", [self.gameSelector selectedSegmentIndex]);
     if (!_game) _game = [[CardMatchingGame alloc] initWithCardCount:self.cardButtons.count usingDeck:[[PlayingCardDeck alloc]init] usingType:[self.gameSelector selectedSegmentIndex]];    
     return _game;
 }
 
-- (void)setCardButtons:(NSArray *)cardButtons
-{
-    _cardButtons = cardButtons;
-    	
+- (ScoreKeeper *) keeper{
+    if (!_keeper) _keeper = [[ScoreKeeper alloc] init];
+    return _keeper;
+}
+
+- (void)setCardButtons:(NSArray *)cardButtons{
+    _cardButtons = cardButtons;    	
     [self updateUI];
 }
 
 //keeping model and view in synch
-- (void)updateUI
-{
+- (void)updateUI {
     //set all the buttons
     for (UIButton *cardButton in self.cardButtons){
         Card *card = [self.game cardAtIndex:[self.cardButtons indexOfObject:cardButton]];
@@ -87,7 +112,7 @@
     }//end for through cardButtons
     
     //set the text labels
-    self.scoreLabel.text = [NSString stringWithFormat:@"Score: %d", self.game.score];
+    self.scoreLabel.text = [NSString stringWithFormat:@"Score: %@", self.game.trackScore.score];
     self.flipsLabel.text = [NSString stringWithFormat:@"Flips: %d", self.flipCount];
     self.statusLabel.text = [NSString stringWithFormat:@"%@", self.game.status];
 

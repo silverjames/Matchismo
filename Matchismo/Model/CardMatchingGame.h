@@ -8,9 +8,10 @@
 
 #import <Foundation/Foundation.h>
 #import "Deck.h"
+#import "GameScore.h"
 
 @interface CardMatchingGame : NSObject
-@property(nonatomic, readonly) int score;
+@property(nonatomic,readonly) GameScore *trackScore;
 @property(nonatomic,readonly) NSString *status;
 @property (nonatomic, readwrite) int matchType; //0 = 2-card match, 1 = 3-card match
 
