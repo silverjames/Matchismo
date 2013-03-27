@@ -10,8 +10,12 @@
 
 @interface GameScore : NSObject
 @property (strong, nonatomic) NSDate *start;
-@property (strong, nonatomic) NSDate *end;
-@property  (strong, nonatomic) NSNumber *score;
+@property (nonatomic) double duration;
+@property  (nonatomic) int score;
 
--(NSArray *) getScoreAsPropertyList;
+
++(NSArray *) allGameResults;
++(NSArray *) allGameResultsSorted:descriptor;
+-(GameScore *) init;
+-(void)synchronize; //...with user defaults
 @end

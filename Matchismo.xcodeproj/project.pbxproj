@@ -10,7 +10,6 @@
 		3003541B16F327C7003B508F /* card_back.png in Resources */ = {isa = PBXBuildFile; fileRef = 3003541A16F327C7003B508F /* card_back.png */; };
 		3003541F16F341C6003B508F /* card_front.png in Resources */ = {isa = PBXBuildFile; fileRef = 3003541E16F341C6003B508F /* card_front.png */; };
 		3003548C16F58F5A003B508F /* GameResultsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3003548B16F58F5A003B508F /* GameResultsController.m */; };
-		3003548F16F59220003B508F /* ScoreKeeper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3003548E16F59220003B508F /* ScoreKeeper.m */; };
 		3003549216F6338E003B508F /* GameScore.m in Sources */ = {isa = PBXBuildFile; fileRef = 3003549116F6338E003B508F /* GameScore.m */; };
 		30425CFC16E75707000F11E3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30425CFB16E75707000F11E3 /* UIKit.framework */; };
 		30425CFE16E75707000F11E3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30425CFD16E75707000F11E3 /* Foundation.framework */; };
@@ -35,8 +34,6 @@
 		3003541E16F341C6003B508F /* card_front.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = card_front.png; path = Matchismo/card_front.png; sourceTree = "<group>"; };
 		3003548A16F58F5A003B508F /* GameResultsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameResultsController.h; sourceTree = "<group>"; };
 		3003548B16F58F5A003B508F /* GameResultsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameResultsController.m; sourceTree = "<group>"; };
-		3003548D16F59220003B508F /* ScoreKeeper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScoreKeeper.h; sourceTree = "<group>"; };
-		3003548E16F59220003B508F /* ScoreKeeper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScoreKeeper.m; sourceTree = "<group>"; };
 		3003549016F6338E003B508F /* GameScore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameScore.h; path = Model/GameScore.h; sourceTree = "<group>"; };
 		3003549116F6338E003B508F /* GameScore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GameScore.m; path = Model/GameScore.m; sourceTree = "<group>"; };
 		30425CF816E75707000F11E3 /* Matchismo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Matchismo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -123,8 +120,6 @@
 			children = (
 				3003548A16F58F5A003B508F /* GameResultsController.h */,
 				3003548B16F58F5A003B508F /* GameResultsController.m */,
-				3003548D16F59220003B508F /* ScoreKeeper.h */,
-				3003548E16F59220003B508F /* ScoreKeeper.m */,
 				30425D1316E75707000F11E3 /* MainStoryboard.storyboard */,
 				30425D1616E75707000F11E3 /* CardGameViewController.h */,
 				30425D1716E75707000F11E3 /* CardGameViewController.m */,
@@ -247,7 +242,6 @@
 				30425D2A16EB46D1000F11E3 /* PlayingCardDeck.m in Sources */,
 				30BC068916ECECF200F47A2A /* CardMatchingGame.m in Sources */,
 				3003548C16F58F5A003B508F /* GameResultsController.m in Sources */,
-				3003548F16F59220003B508F /* ScoreKeeper.m in Sources */,
 				3003549216F6338E003B508F /* GameScore.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

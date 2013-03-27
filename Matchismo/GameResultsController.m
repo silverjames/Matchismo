@@ -8,16 +8,38 @@
 
 #import "GameResultsController.h"
 #import "GameScore.h"
-#import "ScoreKeeper.h"
+#define START_KEY @"start"
+#define DURATION_KEY @"duration"
+#define SCORE_KEY @"score"
 
 
 @interface GameResultsController ()
-@property (strong, nonatomic) ScoreKeeper *keeper;
 @property (weak, nonatomic) IBOutlet UITextView *gameResultsTextView;
-@property (strong, nonatomic) NSMutableString *displayText;
 @end
 
 @implementation GameResultsController
+
+//other methods
+//update UI
+-(void)updateUI:(NSArray *)descriptor{
+    
+    if (!descriptor) [self sortScore]; //perform default sort operation
+
+    self.gameResultsTextView.text = @"";
+    NSMutableString *displayText = [[NSMutableString alloc ]init ];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
+    NSLocale *deLocale = [[NSLocale alloc] initWithLocaleIdentifier:@"de_DE"];
+
+    [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
+    [dateFormatter setTimeStyle:NSDateFormatterNoStyle];
+    [dateFormatter setLocale:deLocale];
+    
+    for (GameScore *result in [GameScore allGameResultsSorted:descriptor]) {
+        [displayText appendFormat:@"score: %d (%@ - %ds)\n", result.score, [dateFormatter stringFromDate:result.start], (int)round(result.duration) ];
+    }
+    
+    self.gameResultsTextView.text = displayText.description;
+}
 
 //lifecycle methods
 //
@@ -33,31 +55,13 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
-    
-    if (!self.keeper) _keeper = [[ScoreKeeper alloc]init];
-    if (!self.displayText) _displayText = [[NSMutableString alloc]init];
-    NSLog(@"GRC:viedDidLoad with %lu scores", (unsigned long)[self.keeper.cardGameScores count]);
-    
+	// Do any additional setup after loading the view.    
 }
 
 -(void) viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    
-    if (self.keeper) {//I have a context - display scores
-        //1. refresh from user defaults
-        [self.keeper synchronize];
-        
-        //2. print contents to view
-        int i = 1;
-        for (id key in self.keeper.cardGameScores) {
-            NSArray *score = [self.keeper.cardGameScores objectForKey:key];
-            [self.displayText appendString:[[NSArray arrayWithObjects: [NSNumber numberWithInt:i], score[0],score[1], score[2], @"\n", nil] componentsJoinedByString:@" "]];
-            i++;
-        }//end for
-        
-        self.gameResultsTextView.text = self.displayText.description;
-    }//end if
+//    NSLog(@"GRC:viewWillAppear");
+    [self sortScore];
 
 }
 
@@ -71,7 +75,6 @@
 
 -(void) viewDidDisappear:(BOOL)animated{
     [super viewDidDisappear:animated];
-    [self.displayText setString: @""];
 
 }
 
@@ -83,12 +86,19 @@
 
 //action methods
 //
-- (IBAction)sortScore:(id)sender {
+- (IBAction)sortScore {
+    NSArray *descriptor = [[NSArray alloc] initWithObjects:[[NSSortDescriptor alloc]initWithKey:SCORE_KEY ascending:NO], nil];
+    [self updateUI:descriptor];
 }
-- (IBAction)sortDate:(id)sender {
+- (IBAction)sortDate {
+    NSArray *descriptor = [[NSArray alloc] initWithObjects:[[NSSortDescriptor alloc]initWithKey:START_KEY ascending:YES], nil];
+    [self updateUI:descriptor];
 }
-- (IBAction)sortTime:(id)sender {
+- (IBAction)sortDuration {
+    NSArray *descriptor = [[NSArray alloc] initWithObjects:[[NSSortDescriptor alloc]initWithKey:DURATION_KEY ascending:YES], nil];
+    [self updateUI:descriptor];
 }
+
 
 
 @end
