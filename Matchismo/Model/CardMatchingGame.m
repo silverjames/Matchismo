@@ -17,7 +17,6 @@
 @interface CardMatchingGame()
 @property (readwrite, nonatomic) NSString *status;
 @property  (readwrite, nonatomic) int score;
-@property (strong, nonatomic) NSMutableArray *cards;
 @property (strong, nonatomic) NSMutableArray *faceUpCards;
 @property (strong, nonatomic) NSMutableString *matchLabels;
 
