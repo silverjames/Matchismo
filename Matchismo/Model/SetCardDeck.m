@@ -14,9 +14,9 @@
     self = [super init];
     
     if (self) {
-        
+        int i = 0;
         for (NSString *symbol in [SetCard validSymbols]) {
-            for (UIColor *color in [SetCard validColors]) {
+            for (NSString *color in [SetCard validColors]) {
                 for (NSNumber *number in [SetCard validNumbers]){
                     for (NSNumber *fill in [SetCard validFills]){
                         SetCard *card = [[SetCard alloc]init];
@@ -25,12 +25,13 @@
                         card.symbol = symbol;
                         card.number = number.intValue;
                         [self addCard:card atTop:YES];
+                        i++;
                     }//fill
                 }//number
             }//color
         }//symbol
+        NSLog(@"SetCardDeck:init: %d cards created", i);
     }//end if
-    
     return self;
 }//end init
 @end

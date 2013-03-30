@@ -29,11 +29,6 @@
     }
 }
 
-- (void) setColor:(UIColor *)color {
-    if ([[SetCard validColors] containsObject:color]) {
-        _color = color;
-    }
-}
 
 - (void) setShading:(float)shading {
     if (shading <= 1.0) {
@@ -45,7 +40,7 @@
 }
 
 + (NSArray *) validFills {
-    return @[@0.3, @0.6, @1.0];
+    return @[@0.2, @0.5, @1.0];
 }
 
 + (NSArray *) validSymbols {
@@ -53,7 +48,7 @@
 }
 
 + (NSArray *) validColors {
-    return @[@"redColor", @"greenColor", @"blueColor"];
+    return @[@"redColor", @"blueColor", @"greenColor"];
 }
 
 @end

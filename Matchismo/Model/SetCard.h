@@ -10,7 +10,7 @@
 
 @interface SetCard : Card
 @property (strong, nonatomic) NSString *symbol;
-@property (strong, nonatomic) UIColor *color;
+@property (strong, nonatomic) NSString *color;
 @property (nonatomic) int number; //1, 2, 3
 @property (nonatomic) float shading; //0.3, 0.6, 1.0
 
