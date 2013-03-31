@@ -68,9 +68,9 @@
 {
     [self.faceUpCards removeAllObjects];
     [self.matchLabels setString:@""];
-    //NSLog(@"game:flipCard: game type: %d", self.matchType);
+    NSLog(@"game:flipCard: game type: %d", self.matchType);
     Card *card = [self cardAtIndex:index];
-    //NSLog(@"gameModel:flipCardAtIndex:card: %@", card.contents);
+    NSLog(@"gameModel:flipCardAtIndex:card: %@", card.contents);
 
     if (!card.isUnplayable) {//if the card is playable
         //NSLog(@"gameModel:flipCardAtIndex: card is playable");
@@ -97,7 +97,7 @@
                     break;
                 case 2:
                     if (self.matchType == 1) {
-                        NSLog(@"matching for a three-card game");
+                        NSLog(@"matching for a set game");
                         [self processMatch:card];
                    }
                 default:

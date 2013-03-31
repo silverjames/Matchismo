@@ -1,0 +1,5 @@
+    //get me all fonts on the system
+    for (NSString *ffamily in [UIFont familyNames]){
+        NSLog(@"%@", ffamily);
+        for (NSString *fname in [UIFont fontNamesForFamilyName:ffamily]) NSLog(@"  -%@", fname);
+    }

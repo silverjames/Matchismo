@@ -31,6 +31,7 @@
 		30519B3E1704C06800D32FD2 /* SetCard.m in Sources */ = {isa = PBXBuildFile; fileRef = 30519B3D1704C06800D32FD2 /* SetCard.m */; };
 		30519B4117059C8000D32FD2 /* SetCardDeck.m in Sources */ = {isa = PBXBuildFile; fileRef = 30519B4017059C8000D32FD2 /* SetCardDeck.m */; };
 		30519B441705A5B600D32FD2 /* SetCardGame.m in Sources */ = {isa = PBXBuildFile; fileRef = 30519B431705A5B600D32FD2 /* SetCardGame.m */; };
+		30519B46170845FF00D32FD2 /* code_snippets.txt in Resources */ = {isa = PBXBuildFile; fileRef = 30519B45170845FF00D32FD2 /* code_snippets.txt */; };
 		30BC068916ECECF200F47A2A /* CardMatchingGame.m in Sources */ = {isa = PBXBuildFile; fileRef = 30BC068816ECECF200F47A2A /* CardMatchingGame.m */; };
 /* End PBXBuildFile section */
 
@@ -75,6 +76,7 @@
 		30519B4017059C8000D32FD2 /* SetCardDeck.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SetCardDeck.m; path = Model/SetCardDeck.m; sourceTree = "<group>"; };
 		30519B421705A5B600D32FD2 /* SetCardGame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SetCardGame.h; path = Model/SetCardGame.h; sourceTree = "<group>"; };
 		30519B431705A5B600D32FD2 /* SetCardGame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SetCardGame.m; path = Model/SetCardGame.m; sourceTree = "<group>"; };
+		30519B45170845FF00D32FD2 /* code_snippets.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = code_snippets.txt; sourceTree = "<group>"; };
 		30BC068716ECECF200F47A2A /* CardMatchingGame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CardMatchingGame.h; path = Model/CardMatchingGame.h; sourceTree = "<group>"; };
 		30BC068816ECECF200F47A2A /* CardMatchingGame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CardMatchingGame.m; path = Model/CardMatchingGame.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -151,6 +153,7 @@
 		30425D0216E75707000F11E3 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				30519B45170845FF00D32FD2 /* code_snippets.txt */,
 				30425D0A16E75707000F11E3 /* CardGameAppDelegate.h */,
 				30425D0B16E75707000F11E3 /* CardGameAppDelegate.m */,
 				30425D0316E75707000F11E3 /* Matchismo-Info.plist */,
@@ -248,6 +251,7 @@
 				30425D1516E75707000F11E3 /* MainStoryboard.storyboard in Resources */,
 				3003541B16F327C7003B508F /* card_back.png in Resources */,
 				3003541F16F341C6003B508F /* card_front.png in Resources */,
+				30519B46170845FF00D32FD2 /* code_snippets.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

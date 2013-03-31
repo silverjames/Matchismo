@@ -12,7 +12,7 @@
 @interface CardMatchingGame : NSObject
 @property(nonatomic,readonly) NSString *status;
 @property(nonatomic, readonly) int score;
-@property (nonatomic, readwrite) int matchType; //0 = 2-card match, 1 = 3-card match
+@property (nonatomic, readwrite) int matchType; //0 = 2-card match, 1 = set game
 @property (strong, nonatomic) NSMutableArray *cards;
 
 

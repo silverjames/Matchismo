@@ -27,10 +27,10 @@
         [cardButton setTitle:card.contents forState:UIControlStateSelected];
         [cardButton setTitle:card.contents forState:UIControlStateSelected|UIControlStateDisabled];
         [cardButton setBackgroundImage:[UIImage imageNamed:@"card_front"] forState:UIControlStateSelected];
-        [cardButton setImageEdgeInsets:UIEdgeInsetsMake(2.2, 2.2, 2.2, 2.2)];
+        [cardButton setImageEdgeInsets:UIEdgeInsetsMake(10,10,10,10)];
         if (!cardButton.selected) {
             [cardButton setBackgroundImage:[UIImage imageNamed:@"card_back"] forState:UIControlStateNormal];
-            [cardButton setImageEdgeInsets:UIEdgeInsetsMake(2.2, 2.2, 2.2, 2.2)];
+            [cardButton setImageEdgeInsets:UIEdgeInsetsMake(10,10,10,10)];
         }//card is not seleced
         
         cardButton.selected = card.isFaceUp;
