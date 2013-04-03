@@ -11,6 +11,10 @@
 #define START_KEY @"start"
 #define DURATION_KEY @"duration"
 #define SCORE_KEY @"score"
+#define GAME_KEY @"game_key"
+
+#define GAME_TYPE_MATCH 0
+#define GAME_TYPE_SET 1
 
 @interface GameScore()
 
@@ -21,9 +25,8 @@
 +(NSArray *) allGameResultsSorted:(NSArray *)descriptor{
     //get all existing game score objects into this new array
     NSMutableArray *allGames = [[NSMutableArray alloc]initWithArray:[self allGameResults ]];
-    NSArray *allGamesSorted = [[NSArray alloc]init];
     
-    allGamesSorted = [allGames sortedArrayUsingDescriptors:descriptor];
+    NSArray *allGamesSorted = [allGames sortedArrayUsingDescriptors:descriptor];
     
     return allGamesSorted;
 }
@@ -46,6 +49,7 @@
         self.start = results[START_KEY];
         self.duration = [results[DURATION_KEY] doubleValue];
         self.score = [results[SCORE_KEY] intValue];
+        self.gameType = [results[GAME_KEY]intValue];
         if (!self.start || !self.duration) {
             self = nil;
         }
@@ -61,6 +65,7 @@
         self.start = [NSDate date];
         self.duration = 0;
         self.score = 0;
+        self.gameType = GAME_TYPE_MATCH;
     }
    return self;
 }
@@ -69,18 +74,31 @@
 -(void) synchronize{
     self.duration = [[NSDate date] timeIntervalSinceDate:self.start];
     NSMutableDictionary *cardGameScores = [[[NSUserDefaults standardUserDefaults] dictionaryForKey:CARD_GAME_KEY] mutableCopy];
+
     if (!cardGameScores) cardGameScores = [[NSMutableDictionary alloc]init];
+    
     cardGameScores[self.start.description] = [self asPropertyList];
     
-//    NSLog(@"GS:writeResults:stored score :%@/%@/%d", self.start, self.end, self.score);
-//    NSLog(@"GS:writeResults:total scores stored: %d", [cardGameScores count]);
+    [[NSUserDefaults standardUserDefaults] setObject:cardGameScores forKey:CARD_GAME_KEY];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+//empties the score store in user defaults
++(void) resetAllScores{
+    
+    NSMutableDictionary *cardGameScores = [[[NSUserDefaults standardUserDefaults] dictionaryForKey:CARD_GAME_KEY] mutableCopy];
+    
+    if (!cardGameScores) cardGameScores = [[NSMutableDictionary alloc]init];
+    
+    [cardGameScores removeAllObjects];
+    
     [[NSUserDefaults standardUserDefaults] setObject:cardGameScores forKey:CARD_GAME_KEY];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 //return self as a property list
 -(id)asPropertyList{
-    return @{ START_KEY:self.start, DURATION_KEY:@(self.duration), SCORE_KEY:@(self.score)};
+    return @{ START_KEY:self.start, DURATION_KEY:@(self.duration), SCORE_KEY:@(self.score), GAME_KEY:@(self.gameType)};
 }
 
 @end

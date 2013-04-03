@@ -12,10 +12,11 @@
 @property (strong, nonatomic) NSDate *start;
 @property (nonatomic) double duration;
 @property  (nonatomic) int score;
-
+@property  (nonatomic)int gameType;
 
 +(NSArray *) allGameResults;
 +(NSArray *) allGameResultsSorted:descriptor;
++(void)resetAllScores;
 -(GameScore *) init;
 -(void)synchronize; //...with user defaults
 @end

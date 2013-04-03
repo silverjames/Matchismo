@@ -11,7 +11,6 @@
 #import "PlayingCardDeck.h"
 #import "Card.h"
 
-
 @interface CardMatchingGameViewController ()
 @property (strong, nonatomic) CardMatchingGame *game;
 
@@ -39,10 +38,6 @@
     }//end for through cardButtons
 }
 
--(void) resetGame{
-    self.game = Nil;
-}
-
 
 //game-specific initializer
 - (CardMatchingGame *) game{
@@ -52,7 +47,7 @@
     return _game;
 }
 
-//overrridden lifecycle methods
+//overridden lifecycle methods
 
 
 @end

@@ -12,6 +12,8 @@
 #import "SetCard.h"
 
 #define SYMBOL_FONT @"HiraKakuProN-W3"
+#define GAME_TYPE_MATCH 0
+#define GAME_TYPE_SET 1
 
 @interface SetGameViewController ()
 @property (strong, nonatomic) SetCardGame *game;
@@ -23,7 +25,11 @@
 //initializer
 //game play initialize
 - (SetCardGame *) game{
-    if (!_game) _game = [[SetCardGame alloc] initWithCardCount:self.cardButtons.count usingDeck:[[SetCardDeck alloc]init] usingType:1];
+    if (!_game){
+        _game = [[SetCardGame alloc] initWithCardCount:self.cardButtons.count usingDeck:[[SetCardDeck alloc]init] usingType:GAME_TYPE_SET];
+        NSLog(@"SGVC:game: game created!");
+
+    }
     return _game;
 }
 
@@ -33,8 +39,6 @@
     NSMutableString *cardSymbols = [[NSMutableString alloc] init];
     for (UIButton *cardButton in self.cardButtons){
         SetCard *card = [self.game cardAtIndex:[self.cardButtons indexOfObject:cardButton]];
-        
-        //NSLog(@"SGVC:updateUICardButtons: button set with %@", card.contents);
 
         //string the card symbol
         for (int i =1; i<=card.number; i++)[cardSymbols appendString:card.symbol];
@@ -46,7 +50,7 @@
         NSAttributedString *cont = [[NSAttributedString alloc] initWithString:cardSymbols attributes:cardAttributes];
         [cardButton setAttributedTitle:cont forState:UIControlStateNormal];
  
-        if (card.isUnplayable) cardButton.alpha = 0.0;
+        cardButton.alpha = card.isUnplayable ? 0.0: 1.0;
         cardButton.selected = card.isFaceUp;
         cardButton.enabled = !card.isUnplayable;
         

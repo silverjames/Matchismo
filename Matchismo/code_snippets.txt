@@ -3,3 +3,28 @@
         NSLog(@"%@", ffamily);
         for (NSString *fname in [UIFont fontNamesForFamilyName:ffamily]) NSLog(@"  -%@", fname);
     }
+
+    if (matchscore) {
+        //process status data for match and render cards unplayable
+        for (Card *matchCard in self.faceUpCards) {
+            matchCard.unplayable = YES;
+            //format matching cards for status message
+            if (firstCard) {
+                [self.matchLabels appendString:matchCard.contents];
+                firstCard = NO;
+            } else {
+                [self.matchLabels appendFormat:@" and %@", matchCard.contents];
+            }
+        }//end for
+        card.unplayable = YES;
+        self.score += matchscore * MATCH_BONUS;
+        
+        self.status = [NSString stringWithFormat:@"matched %@ with %@ for %d points!",
+                       card.contents, self.matchLabels, matchscore * MATCH_BONUS];
+    } else {//no match!
+        for (Card *matchCard in self.faceUpCards) {
+            matchCard.faceUp = NO;
+        }
+        self.score -= MISMATCH_PENALTY;
+         self.status = [NSString stringWithFormat:@"Oops! Mismatch penalty: %d points!",MISMATCH_PENALTY];
+    }//if matchscore

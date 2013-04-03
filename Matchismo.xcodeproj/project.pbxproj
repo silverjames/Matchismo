@@ -11,6 +11,7 @@
 		3003541F16F341C6003B508F /* card_front.png in Resources */ = {isa = PBXBuildFile; fileRef = 3003541E16F341C6003B508F /* card_front.png */; };
 		3003548C16F58F5A003B508F /* GameResultsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3003548B16F58F5A003B508F /* GameResultsController.m */; };
 		3003549216F6338E003B508F /* GameScore.m in Sources */ = {isa = PBXBuildFile; fileRef = 3003549116F6338E003B508F /* GameScore.m */; };
+		300FE1C01709A843009B7EBC /* iOS_Icon_Set@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 300FE1BF1709A843009B7EBC /* iOS_Icon_Set@2x.png */; };
 		30425CFC16E75707000F11E3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30425CFB16E75707000F11E3 /* UIKit.framework */; };
 		30425CFE16E75707000F11E3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30425CFD16E75707000F11E3 /* Foundation.framework */; };
 		30425D0016E75707000F11E3 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30425CFF16E75707000F11E3 /* CoreGraphics.framework */; };
@@ -32,6 +33,8 @@
 		30519B4117059C8000D32FD2 /* SetCardDeck.m in Sources */ = {isa = PBXBuildFile; fileRef = 30519B4017059C8000D32FD2 /* SetCardDeck.m */; };
 		30519B441705A5B600D32FD2 /* SetCardGame.m in Sources */ = {isa = PBXBuildFile; fileRef = 30519B431705A5B600D32FD2 /* SetCardGame.m */; };
 		30519B46170845FF00D32FD2 /* code_snippets.txt in Resources */ = {isa = PBXBuildFile; fileRef = 30519B45170845FF00D32FD2 /* code_snippets.txt */; };
+		30519BD81708D11F00D32FD2 /* Kreuz.png in Resources */ = {isa = PBXBuildFile; fileRef = 30519BD71708D11E00D32FD2 /* Kreuz.png */; };
+		30519BDA1708DA8900D32FD2 /* Kreuz2.png in Resources */ = {isa = PBXBuildFile; fileRef = 30519BD91708DA8800D32FD2 /* Kreuz2.png */; };
 		30BC068916ECECF200F47A2A /* CardMatchingGame.m in Sources */ = {isa = PBXBuildFile; fileRef = 30BC068816ECECF200F47A2A /* CardMatchingGame.m */; };
 /* End PBXBuildFile section */
 
@@ -42,6 +45,7 @@
 		3003548B16F58F5A003B508F /* GameResultsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameResultsController.m; sourceTree = "<group>"; };
 		3003549016F6338E003B508F /* GameScore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameScore.h; path = Model/GameScore.h; sourceTree = "<group>"; };
 		3003549116F6338E003B508F /* GameScore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GameScore.m; path = Model/GameScore.m; sourceTree = "<group>"; };
+		300FE1BF1709A843009B7EBC /* iOS_Icon_Set@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "iOS_Icon_Set@2x.png"; path = "../../Dropbox/Bernie's Cloud Store/iOS_Icon_Set@2x.png"; sourceTree = "<group>"; };
 		30425CF816E75707000F11E3 /* Matchismo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Matchismo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		30425CFB16E75707000F11E3 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		30425CFD16E75707000F11E3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -77,6 +81,8 @@
 		30519B421705A5B600D32FD2 /* SetCardGame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SetCardGame.h; path = Model/SetCardGame.h; sourceTree = "<group>"; };
 		30519B431705A5B600D32FD2 /* SetCardGame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SetCardGame.m; path = Model/SetCardGame.m; sourceTree = "<group>"; };
 		30519B45170845FF00D32FD2 /* code_snippets.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = code_snippets.txt; sourceTree = "<group>"; };
+		30519BD71708D11E00D32FD2 /* Kreuz.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Kreuz.png; path = Matchismo/Kreuz.png; sourceTree = "<group>"; };
+		30519BD91708DA8800D32FD2 /* Kreuz2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Kreuz2.png; path = Matchismo/Kreuz2.png; sourceTree = "<group>"; };
 		30BC068716ECECF200F47A2A /* CardMatchingGame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CardMatchingGame.h; path = Model/CardMatchingGame.h; sourceTree = "<group>"; };
 		30BC068816ECECF200F47A2A /* CardMatchingGame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CardMatchingGame.m; path = Model/CardMatchingGame.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -98,6 +104,9 @@
 		3003541D16F32D3F003B508F /* images */ = {
 			isa = PBXGroup;
 			children = (
+				300FE1BF1709A843009B7EBC /* iOS_Icon_Set@2x.png */,
+				30519BD91708DA8800D32FD2 /* Kreuz2.png */,
+				30519BD71708D11E00D32FD2 /* Kreuz.png */,
 				3003541E16F341C6003B508F /* card_front.png */,
 				3003541A16F327C7003B508F /* card_back.png */,
 			);
@@ -252,6 +261,9 @@
 				3003541B16F327C7003B508F /* card_back.png in Resources */,
 				3003541F16F341C6003B508F /* card_front.png in Resources */,
 				30519B46170845FF00D32FD2 /* code_snippets.txt in Resources */,
+				30519BD81708D11F00D32FD2 /* Kreuz.png in Resources */,
+				30519BDA1708DA8900D32FD2 /* Kreuz2.png in Resources */,
+				300FE1C01709A843009B7EBC /* iOS_Icon_Set@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
